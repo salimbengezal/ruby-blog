@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  get 'users/new'
+  
+  resources :welcome
+
+  resources :users
 
   resources :articles do
     resources :comments
   end
-  root 'articles#index'
-  #root 'welcome#index'
+  #root 'articles#index'
+  root 'welcome#index'
   #get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
