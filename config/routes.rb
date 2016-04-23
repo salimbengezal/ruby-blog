@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-  resources :welcome
 
   resources :users
 
@@ -8,7 +6,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   #root 'articles#index'
-  root 'welcome#index'
+  root 'articles#index'
   #get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
