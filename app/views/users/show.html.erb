@@ -1,10 +1,54 @@
-<div> 
-<p>
-<strong> Name </strong>
-<%= @user.name %>
-</p>
-<p>
-<strong> E-mail </strong>
-<%= @user.email %>
-</div>
-<%= link_to 'Back', users_path %>
+<div class="row">
+
+	<h2>Профиль </h2>
+
+	<div> 
+		<p>
+			<strong> Имя: </strong>
+			<%= @user.name %>
+		</p>
+		<p>
+			<strong> E-mail: </strong>
+			<%= @user.email %>
+		</p>
+		<p>
+			<strong> Статус: </strong>
+			<%if @user.admin? %> 
+			администратор 
+			<% else %> 
+			пользователь 
+			<%end%>
+		</p>
+		<% if user_signed_in? && current_user.id == @user.id %>
+		<%=link_to "Редактировать",  edit_user_registration_path(current_user)%>
+		<% end %>
+	</div>
+
+	<% if user_signed_in? && current_user.admin? && current_user.id != @user.id %>
+	<%if @user.admin? %>
+	<%=link_to "Назначить обычным пользователем", :controller => "users", :action => "set_user", :id => @user.id %>
+	<% else %>
+	<%=link_to "Назначить администратором", :controller => "users", :action => "set_admin", :id => @user.id %>
+	<%end%>
+	<%end%>
+	<hr>
+
+	<% if @user.articles.any? %>
+	<h3> Статьи (<%= @user.articles.count %>)</h3>
+	<ul style="list-style:none;">
+		<%= render @articles %>
+	</ul>
+	<%= will_paginate @articles, :renderer => BootstrapPagination::Rails %>
+	<%else%>
+	<h3> У вас пока нет ни одной статьи </h3>
+	<%end%>
+
+	<% if user_signed_in? && current_user.id == @user.id %>
+	<hr>
+	<div>
+		<h3>Удаление аккаунта</h3>
+		<p>Хотите прекратить использование аккаунта? Нажмите на кнопку
+			<%= button_to "Удалить аккаунт", registration_path(current_user), data: { confirm: "Вы уверены?" }, method: :delete, class: 'btn btn-primary' %></p>
+		</div>
+		<% end %>
+	</div>

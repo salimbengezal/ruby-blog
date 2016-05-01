@@ -10,7 +10,16 @@ class ApplicationAuthorizer < Authority::Authorizer
   def self.default(adjective, user)
     # 'Whitelist' strategy for security: anything not explicitly allowed is
     # considered forbidden.
-    false
+    has_role_granting?(user, able) || user.admin?
+  end
+
+  protected
+
+  def has_role_granting?(user,able)
+    (roles_which_grant(able) & user.roles).any?
+  end
+
+  def roles_which_grant(able)
   end
 
 end

@@ -1,0 +1,16 @@
+<h2>Ваш блог </h2>
+
+<h3> Добавление новой записи</h3>
+
+
+
+
+
+<% if @user.articles.any? %>
+<h3> Предыдущие записи:</h3>
+<ul style="list-style:none;">
+</ul>
+<%= will_paginate @articles %>
+<%else%>
+<h3> У вас пока нет ни одной статьи </h3>
+<%end%>

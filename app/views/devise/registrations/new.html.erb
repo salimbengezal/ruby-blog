@@ -1,0 +1,41 @@
+<div class="row">
+
+  <%= render 'devise/shared/error_messages' %>
+
+  <div class="col-md-5 col-md-offset-4">
+
+    <h2 class="form-group">Регистрация</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+    <div class="field form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :password, "Пароль"%>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> символов минимум)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :password_confirmation, "Подтверждение пароля" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :name, "Имя" %><br />
+      <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="actions text-right form-group" style="margin-right: 0px;">
+      <%= f.submit "Зарегистрироваться", class: "btn btn-primary btn-wide" %>
+    </div>
+
+    <% end %>
+  </div>
+
+</div>

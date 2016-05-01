@@ -1,6 +1,10 @@
-<p>
-  <strong> Comment: </strong>
-  <%= comment.body %>
-</p>
-<p>
-<%= link_to 'Delete', [comment.article, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
+<div class="form-group" style="padding: 10px 10px 20px 20px; border: 1px solid #DADADA; border-radius: 10px; background: #EEEEEE">
+	<h5><%= link_to comment.user.name, user_path(comment.user.id) %> </h5>
+	<% if user_signed_in? && (current_user.id == comment.user_id || current_user.admin?) %>
+	<div class="right text-right">
+		<%= link_to 'Удалить', [comment.article, comment], method: :delete, data: {confirm: 'Вы уверены?'} %>
+	</div>
+	<%end%>
+	<p><%= comment.body %></p>
+	<p style="color: #6F6F6F"><%= time_ago_in_words(comment.created_at) %> ago</p>
+</div>

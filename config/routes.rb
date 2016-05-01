@@ -1,12 +1,36 @@
 Rails.application.routes.draw do
 
-  resources :users
-
-  resources :articles do
-    resources :comments
-  end
-  #root 'articles#index'
   root 'articles#index'
+
+  devise_for :users
+
+  resources :articles
+
+  resources :articles, only: [] do
+    resources :comments, only: [:create, :destroy, :show]
+  end
+
+  
+
+resources :users, only: [:show]
+
+  get 'users/set_admin/:id' => 'users#set_admin'
+  get 'users/set_user/:id' => 'users#set_user'
+  get '/blog/:id', to: 'users#show_blog', as: 'blog'
+
+
+
+
+
+
+  #resources :users do
+   # resources :articles, only: [:create]
+  #end
+
+  
+  
+  #get 'profile/', to: show
+  #root 'articles#index'
   #get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

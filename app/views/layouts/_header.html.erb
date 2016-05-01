@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default" >
+  <div class="container">
+    <div class="navbar-header">
+    <div class="row">
+        <a class="navbar-link" href="/" style="text-decoration: none">
+          <%= image_tag("icon.png", :alt => "icon")%> Блог
+        </a>
+      </div>
+    </div>
+    <!--<ul class="nav navbar-nav navbar-left">
+      <li><a class="navbar-link" href="/">Users</a></li>
+    </ul>-->
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+      <p class="navbar-text"> Привет, <%= current_user.name %>
+        <li><%= link_to "Мой блог", blog_path(current_user.id) %></li>
+        <li><%= link_to "Профиль", user_path(current_user.id) %></li>
+        <li><%= link_to "Выйти", destroy_user_session_path %></li>
+        <%else%>
+        <p class="navbar-text"> Привет, Гость </p>
+        <li><%=link_to "Регистрация", new_user_registration_path %></li>
+        <li><%= link_to "Авторизация", new_user_session_path %></li>
+        <%end%>
+      </ul>
+    </div>
+  </nav>

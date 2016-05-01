@@ -1,9 +1,9 @@
 <%= form_for([@article, @article.comments.build]) do |f| %>
-  <p>
-    <%=f.label :body %><br>
-    <%=f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+<p>
+	<%=f.label :body, "Текст сообщения" %><br>
+	<%=f.text_area :body, class: "form-control", rows: 7 %>
+</p>
+<div class="form-group text-right">
+	<%= f.submit "Добавить", class: "btn btn-primary" %>
+</div>
 <% end %>

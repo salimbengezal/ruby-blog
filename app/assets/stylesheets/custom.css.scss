@@ -1,1 +1,32 @@
 @import 'bootstrap';
+
+#block {
+
+	width:600;
+	border: 3px solid #ccc;
+	padding: 40px;
+	border-radius: 10px;
+	margin: 50px 0px 50px 0px;
+}
+
+#textblock {
+	padding: 30px;
+	text-align:justify
+}
+
+.blockbuttons {
+    float:right
+}
+
+.right {
+	float:right
+}
+
+
+.actions {
+	margin:20px;
+}
+
+.btn-wide {
+	width:50%;
+}

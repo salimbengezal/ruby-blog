@@ -1,40 +1,41 @@
 class ArticlesController < ApplicationController
 
-def index
-  @articles = Article.all
-end
-
-def new
-  @article = Article.new
-end
-
-def show
-  @article = Article.find(params[:id])
-end
-
-def create
-  @article = Article.new(article_params)
-  if @article.save
-    redirect_to @article
-  else
-    render 'new'
+  def index
+    @articles = Article.all.paginate(page: params[:page], :per_page => 5)
   end
-end
 
-def edit
-  @article = Article.find(params[:id])
-end
+  def new
+    @article = Article.new
+  end
 
-def update
-  @article = Article.find(params[:id])
-  if @article.update(article_params)
+  def show
+    @article = Article.find(params[:id])
+    @comments = @article.comments.paginate(page: params[:page], :per_page => 5)
+  end
+
+  def create
+    @article = current_user.articles.new(article_params)
+    if @article.save
+      redirect_to @article
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
      redirect_to @article
-  else
+   else
      render 'edit'
-  end
-end
+   end
+ end
 
-def destroy
+ def destroy
   @article = Article.find(params[:id])
   @article.destroy
   redirect_to articles_path

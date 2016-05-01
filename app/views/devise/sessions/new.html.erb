@@ -1,0 +1,38 @@
+<div class="row">
+
+  <%= render 'devise/shared/error_messages' %>
+
+  <div class="col-md-4 col-md-offset-4">
+    <h2 class="form-group">Авторизация</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="field form-group" style="margin-bottom: 0px">
+      <%= f.label :password, "Пароль" %><br />
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+    <div class="field form-group">
+      <%= f.check_box :remember_me  %>
+      <%= f.label :remember_me, "Запомнить" %>
+    </div>
+    <% end %>
+
+    <div class="row" style="margin: 0px;">
+    <%= render "devise/shared/links" %>
+
+    <div class="actions text-right", style="margin: -35px 0px 20px 0px;">
+      <%= f.submit "Войти", class: 'btn btn-primary btn-wide' %>
+    </div>
+    </div>
+    <% end %>
+
+    
+
+  </div>
+</div>

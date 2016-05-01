@@ -1,18 +1,28 @@
+<div class="form-group">
+	<h2><%= @article.title %></h2>
+	<div style="color: #6F6F6F">Дата: <%=@article.created_at%></div>
+</div>
 <p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+	<%= @article.text %>
 </p>
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+<div> Автор: <%=link_to  @article.user.name, user_path(@article.user) %></div>
+<% if user_signed_in? && (current_user.id == @article.user_id || current_user.admin?) %>
+<%= link_to 'Редактировать', edit_article_path(@article) %> | 
+<%= link_to 'Удалить', article_path(@article), method: :delete, data: { confirm: 'Вы уверены?' } %>
+<% end %>
 
-<h2>Comments</h2>
+
+
+<hr>
+<h2 class="form-group">Комментарии</h2>
+<% if @article.comments.any? %>
 <%= render @article.comments %>
+<% else %>
+<p> Пока нет ни одного комментария </p>
+<% end %>
 
-
-<h2> Add Comment </h2>
+<% if user_signed_in? %>
+<hr>
+<h3> Добавление комментария </h3>
 <%= render 'comments/form' %>
-
-<%= link_to 'Edit', edit_article_path(@article) %> | 
-<%= link_to 'Back', articles_path %>
+<% end %>

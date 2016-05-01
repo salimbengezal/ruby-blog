@@ -1,0 +1,8 @@
+<li>
+	<div>
+		<h4>
+			<%= link_to article.title, article_path(article) %>
+		</h4>
+		<p>Размещено <%= time_ago_in_words(article.created_at) %> назад</p>
+	</div>
+</li>

@@ -1,0 +1,31 @@
+<%- if controller_name == 'articles' %>
+<% if @article.errors.any? %>
+<h2 class="alert alert-warning"> Обнаружено ошибок:
+	<%= @article.errors.count %> 
+</h2>
+<ul style="list-style-type: none">
+	<% @article.errors.full_messages.each do |msg| %>
+	<li class="alert alert-danger">
+		<%= msg %> 
+	</li>
+	<% end %>
+</ul>
+<% end %>
+<% end %>
+
+<% if controller_name=="registrations" %>
+<% if @user.errors.any? %>
+<h2 class="alert"> Обнаружено ошибок:
+	<%= @user.errors.count %> 
+</h2>
+<ul style="list-style-type: none">
+	<% @user.errors.full_messages.each do |msg| %>
+	<li class="alert alert-danger">
+		<%= msg %> 
+	</li>
+	<% end %>
+</ul>
+<% end %>
+<% end %>
+
+
