@@ -44,6 +44,7 @@ class UsersController < ApplicationController
 
   def show_blog
     @user = User.find(params[:id])
+    @article = Article.new
     @articles = @user.articles.paginate(page: params[:page], :per_page => 5)
   end
 

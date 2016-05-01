@@ -1,16 +1,18 @@
-<h2>Ваш блог </h2>
-
+<h2 class="form-group">Ваш блог </h2>
+<br>
 <h3> Добавление новой записи</h3>
-
-
-
-
-
+<div class="row">
+<div class="col-md-7 col-md-offset-2">
+		<%= render 'articles/form' %>
+	</div>
+</div>
+<hr>
 <% if @user.articles.any? %>
-<h3> Предыдущие записи:</h3>
+<h3> Статьи (<%= @user.articles.count %>)</h3>
 <ul style="list-style:none;">
+	<%= render @articles %>
 </ul>
-<%= will_paginate @articles %>
+<%= will_paginate @articles, :renderer => BootstrapPagination::Rails %>
 <%else%>
 <h3> У вас пока нет ни одной статьи </h3>
 <%end%>

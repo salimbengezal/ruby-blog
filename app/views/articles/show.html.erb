@@ -2,7 +2,7 @@
 	<h2><%= @article.title %></h2>
 	<div style="color: #6F6F6F">Дата: <%=@article.created_at%></div>
 </div>
-<p>
+<p style="text-align: justify;">
 	<%= @article.text %>
 </p>
 <div> Автор: <%=link_to  @article.user.name, user_path(@article.user) %></div>

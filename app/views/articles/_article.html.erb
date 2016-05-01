@@ -1,8 +1,9 @@
 <li>
-	<div>
+	<div style="margin: 10px 10px 30px 0px;">
 		<h4>
 			<%= link_to article.title, article_path(article) %>
 		</h4>
+		<p><%= truncate(article.text, length: 200) %></p>
 		<p>Размещено <%= time_ago_in_words(article.created_at) %> назад</p>
 	</div>
 </li>
